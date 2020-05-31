@@ -8,6 +8,8 @@ class Enemy:
         self.rect = pygame.Rect((0, 0), self.sizeofFrame)
         self.timer = 0
 
+        self.hp = 3
+
 
         self.sightLines = 9999
         self.away = True
@@ -15,28 +17,29 @@ class Enemy:
 
     def update(self, player):
         self.timer += 1
+        speed = .5
         gap = 20
         distoObj = 0
 
         if distoObj < self.sightLines:
             if self.away:
                 if self.rect.centerx < player.rect.centerx - gap:
-                    self.rect.x -= 1
+                    self.rect.x -= speed
                 elif self.rect.centerx > player.rect.centerx + gap:
-                    self.rect.x += 1
+                    self.rect.x += speed
                 if self.rect.centery < player.rect.centery - gap:
-                    self.rect.y -= 1
+                    self.rect.y -= speed
                 elif self.rect.centery > player.rect.centery + gap:
-                    self.rect.y += 1
+                    self.rect.y += speed
             elif self.towards:
                 if self.rect.centerx < player.rect.centerx - gap:
-                    self.rect.x += 1
+                    self.rect.x += speed
                 elif self.rect.centerx < player.rect.centerx + gap:
-                    self.rect.x -= 1
+                    self.rect.x -= speed
                 if self.rect.centery < player.rect.centery - gap:
-                    self.rect.y += 1
+                    self.rect.y += speed
                 elif self.rect.centery > player.rect.centery + gap:
-                    self.rect.y -= 1
+                    self.rect.y -= speed
 
     def blit(self, screen):
         currentFrame = int(self.timer / 40)

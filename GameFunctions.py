@@ -25,6 +25,15 @@ def updateEvents(player):
                 player.down = True
             elif event.key == pygame.K_d:
                 player.right = True
+            elif event.key == pygame.K_TAB:
+                player.weaponEquipped = 1 if player.weaponEquipped == 0 else 0
+                print(player.weaponEquipped)
+            elif event.key == pygame.K_0:
+                continue
+                # pygame.display.quit()
+                # pygame.display.init()
+                # fullscreen = False if fullscreen == True else True
+
             elif event.key == pygame.K_ESCAPE:
                 print("Program End.")
                 pygame.quit()
@@ -60,6 +69,18 @@ def updateEvents(player):
             pygame.quit()
             sys.exit()
 
+
 def checkCollision(player, obj):
     if pygame.sprite.collide_rect(player, obj):
         print("hit wall")
+
+
+def getDistance(p1, p2):
+    return math.sqrt(((p1[0] - p2[0]) ** 2)+((p1[1] - p2[1]) ** 2))
+
+
+def cleanList(removeList, list1):
+    removeList.sort(reverse=True)
+    for i in removeList:
+        list1.pop(i)
+    removeList.clear()
