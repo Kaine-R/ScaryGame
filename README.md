@@ -1,2 +1,0 @@
-# ScaryGame
- MoonMoon GameJam
